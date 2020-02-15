@@ -2,23 +2,23 @@
     "contests": [
       {
         "id": 1,
-        "categoryName": "Business/Company",
-        "contestName": "Cognitive Building Bricks"
+        "categoryName": "Business",
+        "contestName": "The Intelligent Investor"
       },
       {
         "id": 2,
-        "categoryName": "Magazine/Newsletter",
-        "contestName": "Educating people about sustainable food production"
+        "categoryName": "Novel",
+        "contestName": "Anna Karenina"
       },
       {
         "id": 3,
-        "categoryName": "Software Component",
-        "contestName": "Big Data Analytics for Cash Circulation"
+        "categoryName": "Software Development",
+        "contestName": "Clean Code: A Handbook of Agile Software Craftsmanship"
       },
       {
         "id": 4,
-        "categoryName": "Website",
-        "contestName": "Free programming books"
+        "categoryName": "Triller",
+        "contestName": "Those Bones Are Not My Child"
       }
     ]
   }
