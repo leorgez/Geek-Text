@@ -1,7 +1,7 @@
 {
-  "name": "learn-fullstack-javascript",
+  "name": "Geek-Text",
   "version": "1.0.0",
-  "description": "Learning Fullstack JavaScript Development: MongoDB, Node.js, React.js",
+  "description": "Geek-Text",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore public/",
@@ -9,18 +9,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jscomplete/learn-fullstack-javascript.git"
+    "url": "git+https://github.com/Zl30/Geek-Text"
   },
   "author": "Leo",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/jscomplete/learn-fullstack-javascript/issues"
+    "url": "https://github.com/Zl30/Geek-Text/issues"
   },
-  "homepage": "https://github.com/jscomplete/learn-fullstack-javascript#readme",
+  "homepage": "https://github.com/Zl30/Geek-Text#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "json-loader": "^0.5.7",
     "mongodb": "^3.5.2",
+    "node-sass": "^4.13.1",
+    "node-sass-middleware": "^0.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
