@@ -10,7 +10,7 @@ const getApiUrl = contestId => {
     if (contestId) {
         return `${config.serverURL}/api/contests/${contestId}`;
     }
-    return `${config.serverURL}/api/contests`;
+    return `http://localhost:8080/api/contests`;
 };
 
 const getInitialData = (contestId, apiData) => {
