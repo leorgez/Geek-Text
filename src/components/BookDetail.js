@@ -46,7 +46,45 @@ class BookDetail extends Component {
             <p className="card-text">{this.state.book.description}</p>
           </div>
           <img src={this.state.book.cover} className="card-img-bottom" height="50%" />
+          
+          <div class="form-group">
+    <h3 className="panel-title">Rate the book 1-5</h3>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>★(1)</option>
+      <option>★★(2)</option>
+      <option>★★★(3)</option>
+      <option>★★★★(4)</option>
+      <option>★★★★★(5)</option>
+    </select>
+    <span className="input-group-btn">
+                  <button type="submit" className="btn btn-info">
+                     Submit
+                  </button>
+                </span>
+  </div>
+
+    <h3 className="panel-title">Write a Review</h3>  
+    <div className="input-group">
+    <input type="text" placeholder="New Review Here..."ref="newNameInput"
+                   className="form-control" />
+    <span className="input-group-btn">
+                  <button type="submit" className="btn btn-info">
+                     Submit
+                  </button>
+                </span>
+
+  </div>
+  <div className="panel-body">
+            <ul className="list-group">
+            
+            </ul>
+            
+          </div>
         </div>
+         
+      
+        
+        
       )
     }
   }
