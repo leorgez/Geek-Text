@@ -1,43 +1,93 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  useParams
-} from "react-router-dom";
-import {apiUrl} from '../api';
+import React, { Component } from "react";
+import { BrowserRouter as Router, useParams } from "react-router-dom";
+import { apiUrl } from "../api";
+import { BookReviews } from "./BookReviews";
 
 class BookDetail extends Component {
   state = {
-    book: null
-  }
+    book: null,
+    review: "", // string comment
+    author: "", // User commenting string
+    rating: null, // We start at nothing
+    calculatedRatings: 0 // We start @ 0, since at first it's empty
+  };
 
   componentDidMount() {
-    this._asyncRequest = this.loadBook(this.props.bookId).then(
-      book => {
-        this._asyncRequest = null;
-        this.setState({book})
-      }
-    );
+    this._asyncRequest = this.loadBook(this.props.bookId).then(book => {
+      this._asyncRequest = null;
+
+      this.setState({
+        book: { ...book, reviews: book.reviews ? book.reviews.reverse() : [] }, 
+        // If statement to reverse the comments to show the newest always on top.
+        totalRatings: this.calculateRatings( // shows the book's ratings
+          book.reviews ? book.reviews.map(review => review.rating) : []
+        )
+      });
+    });
   }
 
-  componentWillUnmount() {
-    if (this._asyncRequest) {
-      this._asyncRequest.cancel();
-    }
-  }
-
-  loadBook = async (bookId) => {
+  loadBook = async bookId => {
     const response = await fetch(`${apiUrl}/books/${bookId}`);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
 
     return body;
-  }
+  };
+
+  calculateRatings = ratings => {
+    let totalRatings = 0; // starting at 0
+
+    ratings.forEach(rating => {
+      totalRatings += rating; // adding up the ratings
+    });
+    if (ratings.length === 0) return 0;
+    return Math.round(totalRatings / ratings.length); // finding the average of overall
+  };
+
+  updateReview = e => {
+    this.setState({ review: e.target.value }); // holds the comment of the user
+  };
+  updateAuthorName = e => {
+    this.setState({ author: e.target.value }); // holds the user's name
+  };
+
+  handleRating = e => {
+    this.setState({ rating: parseInt(e.target.value, 10) }); // holds the rating
+  };
+  sendReview = async () => {
+    const body = JSON.stringify({ // converts the body into string
+      bookId: this.props.bookId,
+      review: this.state.review,
+      author: this.state.author,
+      rating: this.state.rating
+    });
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    const response = await fetch(`${apiUrl}/books/review`, {
+      method: "POST", // we use this, because we are posting comments
+      body,
+      headers
+    });
+
+    const data = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    const bookCopy = { ...this.state.book };
+    bookCopy.reviews = data.reviews.reverse();
+
+    this.setState({
+      book: bookCopy,
+      review: "",
+      author: "",
+      totalRatings: this.calculateRatings( // displays the average rating
+        data.reviews.map(review => review.rating)
+      )
+    });
+  };
 
   render() {
     if (this.state.book === null) {
-      return (
-        <h1>Loading book...</h1>
-      )
+      return <h1>Loading book...</h1>;
     } else {
       return (
         <div className="card">
@@ -45,55 +95,75 @@ class BookDetail extends Component {
             <h5 className="card-title">{this.state.book.title}</h5>
             <p className="card-text">{this.state.book.description}</p>
           </div>
-          <img src={this.state.book.cover} className="card-img-bottom" height="50%" />
-          
-          <div class="form-group">
-    <h3 className="panel-title">Rate the book 1-5</h3>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>★(1)</option>
-      <option>★★(2)</option>
-      <option>★★★(3)</option>
-      <option>★★★★(4)</option>
-      <option>★★★★★(5)</option>
-    </select>
-    <span className="input-group-btn">
-                  <button type="submit" className="btn btn-info">
-                     Submit
-                  </button>
-                </span>
-  </div>
+          <img
+            src={this.state.book.cover}
+            className="card-img-bottom"
+            height="50%"
+          />
 
-    <h3 className="panel-title">Write a Review</h3>  
-    <div className="input-group">
-    <input type="text" placeholder="New Review Here..."ref="newNameInput"
-                   className="form-control" />
-    <span className="input-group-btn">
-                  <button type="submit" className="btn btn-info">
-                     Submit
-                  </button>
-                </span>
+         
+          <h5>Ratings: {this.state.totalRatings}</h5>
+          <h3 className="panel-title">Write a Review</h3>
+          <div className="input-group d-flex flex-column justify-content-center">
+            <div className="w-75 mr-auto ml-auto mt-4">
+              <input
+                value={this.state.author}
+                type="text"
+                placeholder="Your name"
+                className="form-control"
+                onChange={this.updateAuthorName}
+              />
+            </div>
 
-  </div>
-  <div className="panel-body">
+            <div className="w-75 mr-auto ml-auto mt-3">
+              <h5 className="panel-title text-left">Rate the book 1-5</h5>
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={this.handleRating}
+              >
+                <option value="1">★</option>
+                <option value="2">★★</option>
+                <option value="3">★★★</option>
+                <option value="4">★★★★</option>
+                <option value="5">★★★★★</option>
+              </select>
+            </div>
+            <div className="w-75 mr-auto ml-auto mt-3">
+              <textarea
+                value={this.state.review}
+                type="text"
+                placeholder="New Review Here..."
+                ref="newNameInput"
+                className="form-control"
+                onChange={this.updateReview}
+              />
+            </div>
+
+            <span className="input-group-btn mt-5 w-75 mr-auto ml-auto">
+              <button
+                type="submit"
+                className="btn btn-info w-100"
+                onClick={this.sendReview}
+              >
+                Submit
+              </button>
+            </span>
+          </div>
+          <div className="panel-body">
             <ul className="list-group">
-            
+              <BookReviews reviews={this.state.book.reviews} />
+              {/* Shows off the reviews */}
             </ul>
-            
           </div>
         </div>
-         
-      
-        
-        
-      )
+      );
     }
   }
 }
 
-export default function () {
-  let {id} = useParams();
+export default function() {
+  let { id } = useParams();
 
-  return (
-    <BookDetail bookId={id}/>
-  )
-};
+  return <BookDetail bookId={id} />;
+}
