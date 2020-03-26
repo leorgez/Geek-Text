@@ -58,7 +58,7 @@ const MyList = ({
       <li key={`item${item._id}`} className="list-group-item">
         <div className="media">
           <Link to={`/books/${item._id}`}>
-            <img className="mr-3 rounded" src={item.cover} height="150"/>
+            <img className="mr-3 rounded" src={item.cover} height="200"/>
           </Link>
           <div className="media-body">
             <h5 className="mt-0">{item.title}</h5>

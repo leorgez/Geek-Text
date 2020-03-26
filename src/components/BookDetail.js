@@ -5,6 +5,10 @@ import {
 } from "react-router-dom";
 import {apiUrl} from '../api';
 
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
+
 class BookDetail extends Component {
   state = {
     book: null
@@ -14,7 +18,7 @@ class BookDetail extends Component {
     this._asyncRequest = this.loadBook(this.props.bookId).then(
       book => {
         this._asyncRequest = null;
-        this.setState({book})
+        this.setState({book});
       }
     );
   }
@@ -43,9 +47,21 @@ class BookDetail extends Component {
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">{this.state.book.title}</h5>
-            <p className="card-text">{this.state.book.description}</p>
+            <h5 className="card-genre">Genre: {this.state.book.genre}</h5>
+            <h5 className="card-publishingInfo">Publishing Information: {this.state.book.publishingInfo.publisher}, {this.state.book.publishingInfo.publicationDate}</h5>
+            <h5 className="card-genre">Genre: {this.state.book.genre}</h5>
+            <p className="card-author">{this.state.book.author}</p>
+            <p className="card-shortBio">{this.state.book.shortBio}</p>
+            <Zoom>
+              <img
+                src={this.state.book.cover}
+                width="400"
+                alt=""
+                />
+            </Zoom>
+
           </div>
-          <img src={this.state.book.cover} className="card-img-bottom" height="50%" />
+          {/* <img src={this.state.book.cover} className="card-img-bottom" height="50%" /> */}
         </div>
       )
     }
