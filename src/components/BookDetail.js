@@ -102,7 +102,7 @@ class BookDetail extends Component {
           />
 
          
-          <h5>Ratings: {this.state.totalRatings}</h5>
+          <h5>Ratings: {this.state.totalRatings}/5</h5>
           <h3 className="panel-title">Write a Review</h3>
           <div className="input-group d-flex flex-column justify-content-center">
             <div className="w-75 mr-auto ml-auto mt-4">
