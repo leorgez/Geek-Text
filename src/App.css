@@ -44,3 +44,6 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+img {
+  float: right;
+}
