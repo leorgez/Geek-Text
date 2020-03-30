@@ -55,7 +55,7 @@ class BookDetail extends Component {
             <Zoom>
               <img
                 src={this.state.book.cover}
-                width="400"
+                width="200"
                 alt=""
                 />
             </Zoom>
