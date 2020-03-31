@@ -24,7 +24,7 @@ class BookDetail extends Component {
       this._asyncRequest = null;
 
       this.setState({
-        book: { ...book, reviews: book.reviews ? book.reviews.reverse() : [] }, 
+        book: { ...book, reviews: book.reviews ? book.reviews.reverse() : [] },
         // If statement to reverse the comments to show the newest always on top.
         totalRatings: this.calculateRatings( // shows the book's ratings
           book.reviews ? book.reviews.map(review => review.rating) : []
@@ -103,8 +103,8 @@ class BookDetail extends Component {
           <div className="card-body">
             <h5 className="card-title">{this.state.book.title}</h5>
             <h5 className="card-genre">Genre: {this.state.book.genre}</h5>
+            <p className="description">Description: {this.state.book.description}</p>
             <h5 className="card-publishingInfo">Publishing Information: {this.state.book.publishingInfo.publisher}, {this.state.book.publishingInfo.publicationDate}</h5>
-            <h5 className="card-genre">Genre: {this.state.book.genre}</h5>
             <p className="card-author "><strong>Author:</strong> <a className="author-link" target="_blank" href={this.state.book.moreBooks}>{this.state.book.author}</a></p>
             <p className="card-shortBio">{this.state.book.shortBio}</p>
             <Zoom>
