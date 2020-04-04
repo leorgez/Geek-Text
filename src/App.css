@@ -1,5 +1,5 @@
 .App {
-  text-align: left;
+  text-align: center;
 }
 
 .App-logo {
@@ -28,14 +28,6 @@
   color: #61dafb;
 }
 
-.author-link {
-  color: #333333;
-}
-
-a:hover {
-  color: #333333;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -43,7 +35,4 @@ a:hover {
   to {
     transform: rotate(360deg);
   }
-}
-img {
-  float: right;
 }

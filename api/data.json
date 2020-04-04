@@ -1,4 +1,5 @@
-[{
+[
+{
   "id": 1,
   "title": "The Intelligent Investor",
   "description": "The greatest investment advisor of the twentieth century, Benjamin Graham, taught and inspired people worldwide. Graham's philosophy of \"value investing\" which shields investors from substantial error and teaches them to develop long-term strategies has made The Intelligent Investor the stock market bible ever since its original publication in 1949. Over the years, market developments have proven the wisdom of Graham's strategies. While preserving the integrity of Graham's original text, this revised edition includes updated commentary by noted financial journalist Jason Zweig, whose perspective incorporates the realities of today's market, draws parallels between Graham's examples and today's financial headlines, and gives readers a more thorough understanding of how to apply Graham's principles. Vital and indispensable, this HarperBusiness Essentials edition of The Intelligent Investor is the most important book you will ever read on how to reach your financial goals.",
@@ -10,7 +11,8 @@
   },
   "author":"Benjamin Graham",
   "shortBio": "Benjamin Graham was a British-born American investor, economist, and professor. He is widely known as the \"father of value investing\", and wrote two of the founding texts in neoclassical investing: Security Analysis with David Dodd, and The Intelligent Investor.",
-  "cover": "https://target.scene7.com/is/image/Target/GUEST_4f0a0050-6cfc-4d02-9d14-7b9c26d8519b?wid=488&hei=488&fmt=pjpeg"
+  "cover": "https://target.scene7.com/is/image/Target/GUEST_4f0a0050-6cfc-4d02-9d14-7b9c26d8519b?wid=488&hei=488&fmt=pjpeg",
+  "price":20
 },
 {
   "id": 2,
@@ -24,7 +26,8 @@
   },
   "author":"Benjamin Graham",
   "shortBio": "Benjamin Graham was a British-born American investor, economist, and professor. He is widely known as the \"father of value investing\", and wrote two of the founding texts in neoclassical investing: Security Analysis with David Dodd, and The Intelligent Investor.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/51leHpdUfFL._SX323_BO1,204,203,200_.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/51leHpdUfFL._SX323_BO1,204,203,200_.jpg",
+  "price":30
 },
 {
   "id": 3,
@@ -38,7 +41,8 @@
   },
   "author":"Leo Tolstoy",
   "shortBio": "Leo Tolstoy was a Russian writer who primarily wrote novels and short stories. Later in life, he also wrote plays and essays. His two most famous works, the novels War and Peace and Anna Karenina, are acknowledged as two of the greatest novels of all time and a pinnacle of realist fiction. Many consider Tolstoy to have been one of the world's greatest novelists. Tolstoy is equally known for his complicated and paradoxical persona and for his extreme moralistic and ascetic views, which he adopted after a moral crisis and spiritual awakening in the 1870s, after which he also became noted as a moral thinker and social reformer.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/A1aDb5U5myL.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/A1aDb5U5myL.jpg",
+  "price":25
 },
 {
   "id": 4,
@@ -52,7 +56,8 @@
   },
   "author": "Leo Tolstoy",
   "shortBio": "Leo Tolstoy was a Russian writer who primarily wrote novels and short stories. Later in life, he also wrote plays and essays. His two most famous works, the novels War and Peace and Anna Karenina, are acknowledged as two of the greatest novels of all time and a pinnacle of realist fiction. Many consider Tolstoy to have been one of the world's greatest novelists. Tolstoy is equally known for his complicated and paradoxical persona and for his extreme moralistic and ascetic views, which he adopted after a moral crisis and spiritual awakening in the 1870s, after which he also became noted as a moral thinker and social reformer.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/41ebi9z2DjL.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/41ebi9z2DjL.jpg",
+  "price":15
 },
 {
   "id": 5,
@@ -66,7 +71,8 @@
   },
   "author":"Walter Isaacson",
   "shortBio": "Walter Isaacson is a Professor of History at Tulane and an advisory partner at Perella Weinberg, a financial services firm based in New York City. Isaacson was born on May 20, 1952, in New Orleans. He is a graduate of Harvard College and of Pembroke College of Oxford University, where he was a Rhodes Scholar.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/61n431BDxGL.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/61n431BDxGL.jpg",
+  "price":24
 },
 {
   "id": 6,
@@ -80,7 +86,8 @@
   },
   "author":"Bram Stoker",
   "shortBio": "Born in Ireland in 1847, Bram Stoker studied mathematics at Dublin's Trinity College and embarked on his longtime role as an assistant to actor Sir Henry Irving in the 1870s. He also began carving out a second career as a writer, publishing his first novel, The Primrose Path, in 1875.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/41Tk-U629kL._SX379_BO1,204,203,200_.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/41Tk-U629kL._SX379_BO1,204,203,200_.jpg",
+  "price":25
 },
 {
   "id": 7,
@@ -94,7 +101,8 @@
   },
   "author":"Miguel de Cervantes Saavedra",
   "shortBio": "Miguel de Cervantes, in full Miguel de Cervantes Saavedra, (born September 29?, 1547, Alcalá de Henares, Spain—died April 22, 1616, Madrid), Spanish novelist, playwright, and poet, the creator of Don Quixote (1605, 1615) and the most important and celebrated figure in Spanish literature.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/51iQq6ZYedL.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/51iQq6ZYedL.jpg",
+  "price":20
 },
 {
   "id": 8,
@@ -108,7 +116,8 @@
   },
   "author":"William Shakespeare",
   "shortBio": "William Shakespeare was an English poet, playwright, and actor. He was born on 26 April 1564 in Stratford-upon-Avon. His father was a successful local businessman and his mother was the daughter of a landowner. ... He is often called England's national poet and nicknamed the Bard of Avon.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/31Oxk3bjffL._BO1,204,203,200_.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/31Oxk3bjffL._BO1,204,203,200_.jpg",
+  "price":25
 },
 {
   "id": 9,
@@ -122,7 +131,8 @@
   },
   "author":"Herman Melville",
   "shortBio": "Herman Melville (born Melvill; August 1, 1819 – September 28, 1891) was an American novelist, short story writer and poet of the American Renaissance period. Among his best-known works are his magnum opus, Moby-Dick (1851), and Typee (1846), a romantic account of his experiences of Polynesian life.",
-  "cover": "https://images-na.ssl-images-amazon.com/images/I/41VnFKC9srL._SX346_BO1,204,203,200_.jpg"
+  "cover": "https://images-na.ssl-images-amazon.com/images/I/41VnFKC9srL._SX346_BO1,204,203,200_.jpg",
+  "price":15
 },
 {
   "id": 10,
@@ -136,6 +146,7 @@
   },
   "author":"Homer",
   "shortBio": "The Greek poet Homer was born sometime between the 12th and 8th centuries BC, possibly somewhere on the coast of Asia Minor. He is famous for the epic poems The Iliad and The Odyssey, which have had an enormous effect on Western culture, but very little is known about their alleged author.S",
-  "cover": "https://astrochara.files.wordpress.com/2016/07/a7f1c41c-9bb4-4581-b969-2d91e8f5834f1.jpg?w=1400"
+  "cover": "https://astrochara.files.wordpress.com/2016/07/a7f1c41c-9bb4-4581-b969-2d91e8f5834f1.jpg?w=1400",
+  "price":23
 }
 ]
