@@ -7,6 +7,7 @@ import {apiUrl} from '../api';
 import { BookReviews } from "./BookReviews";
 
 import Zoom from 'react-medium-image-zoom';
+import { Book}  from './Book';
 import 'react-medium-image-zoom/dist/styles.css';
 
 
@@ -16,7 +17,9 @@ class BookDetail extends Component {
     review: "", // string comment
     author: "", // User commenting string
     rating: null, // We start at nothing
-    calculatedRatings: 0 // We start @ 0, since at first it's empty
+    calculatedRatings: 0, // We start @ 0, since at first it's empty
+
+    wishLists: []
   };
 
   componentDidMount() {
@@ -92,6 +95,11 @@ class BookDetail extends Component {
     });
   }
 
+  addToWishList = () => {
+    let newBook = new Book(this.props.bookId, this.state.book.title, this.state.book.cover);
+    newBook.getBookInfo();
+  }
+
   render() {
     if (this.state.book === null) {
       return (
@@ -107,6 +115,15 @@ class BookDetail extends Component {
             <h5 className="card-publishingInfo">Publishing Information: {this.state.book.publishingInfo.publisher}, {this.state.book.publishingInfo.publicationDate}</h5>
             <p className="card-author "><strong>Author:</strong> <a className="author-link" target="_blank" href={this.state.book.moreBooks}>{this.state.book.author}</a></p>
             <p className="card-shortBio">{this.state.book.shortBio}</p>
+            <div className="w-25 mr-auto ml-auto mt-4">
+            <button
+            type="submit"
+            className="btn btn-info w-100"
+            onClick={this.addToWishList}
+            >
+            Add to Wish List
+            </button>
+            </div>
             <Zoom>
               <img
                 src={this.state.book.cover}
