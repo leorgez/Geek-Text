@@ -20,7 +20,20 @@ export class Book extends Component {
             console.log(this.state.bookId + "\n" + this.state.title +
             "\n" + this.state.cover);
          }
-    }
+
+         getBookTitle() {
+             return this.state.title;
+         }
+
+         getBookCover() {
+             return this.state.cover;
+         }
+
+         getBookId() {
+             return this.state.bookId;
+         }
+
+}
 
 
 

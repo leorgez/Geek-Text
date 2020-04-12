@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   useParams
 } from "react-router-dom";
-import {apiUrl} from '../api';
-import { BookReviews } from "./BookReviews";
+import { apiUrl } from '../api';
 
 import Zoom from 'react-medium-image-zoom';
 import { Book}  from './Book';
 import 'react-medium-image-zoom/dist/styles.css';
-
+import { BookReviews } from "./BookReviews";
+import {Button, ButtonToolbar} from 'react-bootstrap';
+import {PopUpMenu} from './PopUpMenu';
 
 class BookDetail extends Component {
   state = {
@@ -18,8 +18,7 @@ class BookDetail extends Component {
     author: "", // User commenting string
     rating: null, // We start at nothing
     calculatedRatings: 0, // We start @ 0, since at first it's empty
-
-    wishLists: []
+    showMenu: false
   };
 
   componentDidMount() {
@@ -35,6 +34,7 @@ class BookDetail extends Component {
       });
     });
   }
+
 
   loadBook = async bookId => {
     const response = await fetch(`${apiUrl}/books/${bookId}`);
@@ -97,10 +97,17 @@ class BookDetail extends Component {
 
   addToWishList = () => {
     let newBook = new Book(this.props.bookId, this.state.book.title, this.state.book.cover);
-    newBook.getBookInfo();
+    window.$tempBook = newBook;
   }
 
   render() {
+
+    let closeMenu =() => {this.setState({showMenu: false});
+    window.$tempBook = null;
+  }
+
+    let openMenu =() => this.setState({showMenu: true});
+
     if (this.state.book === null) {
       return (
         <h1>Loading book...</h1>
@@ -116,24 +123,52 @@ class BookDetail extends Component {
             <p className="card-author "><strong>Author:</strong> <a className="author-link" target="_blank" href={this.state.book.moreBooks}>{this.state.book.author}</a></p>
             <p className="card-shortBio">{this.state.book.shortBio}</p>
             <div className="w-25 mr-auto ml-auto mt-4">
+            <ButtonToolbar>  
             <button
             type="submit"
             className="btn btn-info w-100"
-            onClick={this.addToWishList}
+            onClick={() => {
+             this.setState({showMenu: true})
+             this.addToWishList()
+            }}
             >
             Add to Wish List
             </button>
+            <PopUpMenu
+            show={this.state.showMenu}
+            onHide={closeMenu}
+            onSubmit={closeMenu}
+            />
+            </ButtonToolbar>
             </div>
             <Zoom>
               <img
                 src={this.state.book.cover}
                 width="200"
                 alt=""
-                />
+              />
             </Zoom>
+            <br />
+						price: ${this.state.book.price}
+            <br />
+            <br />
+            <button
+              className='btn btn-lg btn-success'
+              onClick={() => {
+                console.log('adding 2')
+                this.props.addToCart({
+                  id: this.state.book._id,
+                  title: this.state.book.title,
+                  price: this.state.book.price,
+                  cover: this.state.book.cover
+                });
+              }
+              }
+            >Add to cart</button>
+            <br />
             <h5>Ratings: {this.state.totalRatings}/5</h5>
-          <h3 className="panel-title">Write a Review</h3>
-          <div className="input-group d-flex flex-column justify-content-center"></div>
+            <h3 className="panel-title">Write a Review</h3>
+            <div className="input-group d-flex flex-column justify-content-center"></div>
             <div className="w-75 mr-auto ml-auto mt-4">
               <input
                 value={this.state.author}
@@ -143,55 +178,57 @@ class BookDetail extends Component {
                 onChange={this.updateAuthorName}
               />
             </div>
-        <div className="w-75 mr-auto ml-auto mt-3">
-        <h5 className="panel-title text-left">Rate the book 1-5</h5>
-        <select
-          className="form-control"
-          id="exampleFormControlSelect1"
-          onChange={this.handleRating}
-        >
-          <option value="1">★</option>
-          <option value="2">★★</option>
-          <option value="3">★★★</option>
-          <option value="4">★★★★</option>
-          <option value="5">★★★★★</option>
-        </select>
-      </div>
-      <div className="w-75 mr-auto ml-auto mt-3">
-        <textarea
-          value={this.state.review}
-          type="text"
-          placeholder="New Review Here..."
-          ref="newNameInput"
-          className="form-control"
-          onChange={this.updateReview}
-        />
-      </div>
-
-      <span className="input-group-btn mt-5 w-75 mr-auto ml-auto">
-        <button
-          type="submit"
-          className="btn btn-info w-100"
-          onClick={this.sendReview}
-        >
-          Submit
-        </button>
-      </span>
-    </div>
-    <div className="panel-body">
-      <ul className="list-group">
-        <BookReviews reviews={this.state.book.reviews} />
-        {/* Shows off the reviews */}
-      </ul>
-    </div>
-  </div>
+            <div className="w-75 mr-auto ml-auto mt-3">
+              <h5 className="panel-title text-left">Rate the book 1-5</h5>
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={this.handleRating}
+              >
+                <option value="1">★</option>
+                <option value="2">★★</option>
+                <option value="3">★★★</option>
+                <option value="4">★★★★</option>
+                <option value="5">★★★★★</option>
+              </select>
+            </div>
+            <div className="w-75 mr-auto ml-auto mt-3">
+              <textarea
+                value={this.state.review}
+                type="text"
+                placeholder="New Review Here..."
+                ref="newNameInput"
+                className="form-control"
+                onChange={this.updateReview}
+              />
+            </div>
+            <br />
+            <span className="input-group-btn mt-5 w-75 mr-auto ml-auto">
+              <button
+                type="submit"
+                className="btn btn-info w-100"
+                onClick={this.sendReview}
+              >
+                Submit
+              </button>
+            </span>
+          </div>
+          <div className="panel-body">
+            <ul className="list-group">
+              <BookReviews reviews={this.state.book.reviews} />
+              {/* Shows off the reviews */}
+            </ul>
+          </div>
+        </div >
       );
     }
   }
 }
 
-export default function() {
+export default function (props) {
   let { id } = useParams();
 
-  return <BookDetail bookId={id} />;
-}
+  return (
+    <BookDetail bookId={id} addToCart={props.addToCart} />
+  )
+};
