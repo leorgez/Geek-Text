@@ -45,7 +45,7 @@ export default function CartView() {
 	}
 
 
-	const getSum = (total, item) => total + item.price;
+	const getSum = (total, item) => total + parseInt(item.price, 10);
 
 
 	//numbers.reduce(getSum, 0);
