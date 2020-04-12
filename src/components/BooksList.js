@@ -44,7 +44,7 @@ class BooksList extends Component {
 				<MyVirtualList
 					items={this.state.books}
 					itemHeight={200}
-					addToCart={this.props.addToCart}
+          addToCart={this.props.addToCart}
 				/>
 			)
 		}

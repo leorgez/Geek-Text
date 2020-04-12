@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "node-fetch": "^2.6.0",
     "react": "^16.13.0",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.0",
     "react-medium-image-zoom": "^4.3.0",
     "react-router-dom": "^5.1.2",
