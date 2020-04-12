@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import MiniCartInfo from './components/MiniCartInfo';
 import CartView from './components/CartView';
+import BooksByAuthor from './components/BooksByAuthor';
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
 					<Route path="/cart">
 						<CartView />
 					</Route>
+          <Route path="/author/:id">
+						<BooksByAuthor />
+          </Route>
 					<Route path="/">
 						<MiniCartInfo cartLength={cartItems.length} />
 						<BooksList

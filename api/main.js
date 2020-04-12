@@ -72,10 +72,25 @@ const insertReview = async (req, res) => {
   };
 };
 
+const booksByAuthor = async (req, res) => {
+  const col = db.collection("books");
+
+  console.log(req.params);
+  try {
+    const params = Number(req.params.author);
+    const author = await col.find({ authorId: params }).toArray();
+    send(res, 200, author);
+  } catch(e) {
+    console.log(e);
+    send(res, 500, e);
+  }
+};
+
 // Create one connection to the DB and reuse it
 initDb();
 module.exports = cors(
   router(
+    get("/api/v1/author/:author", booksByAuthor),
     get("/api/v1/books/gen", booksGenData),
     get("/api/v1/books/:id", bookById),
     get("/api/v1/books", books),

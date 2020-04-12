@@ -7,6 +7,7 @@ import { apiUrl } from '../api';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { BookReviews } from "./BookReviews";
+import { Link } from "react-router-dom";
 
 class BookDetail extends Component {
   state = {
@@ -103,7 +104,7 @@ class BookDetail extends Component {
             <h5 className="card-genre">Genre: {this.state.book.genre}</h5>
             <p className="description">Description: {this.state.book.description}</p>
             <h5 className="card-publishingInfo">Publishing Information: {this.state.book.publishingInfo.publisher}, {this.state.book.publishingInfo.publicationDate}</h5>
-            <p className="card-author "><strong>Author:</strong> <a className="author-link" target="_blank" href={this.state.book.moreBooks}>{this.state.book.author}</a></p>
+            <p className="card-author"><strong>Author:</strong> {this.state.book.author}, <a href={`/author/${this.state.book.authorId}`} style={{color: "#00f"}}>more books...</a></p>
             <p className="card-shortBio">{this.state.book.shortBio}</p>
             <Zoom>
               <img
