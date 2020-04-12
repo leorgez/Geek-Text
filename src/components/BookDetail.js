@@ -117,12 +117,12 @@ class BookDetail extends Component {
       return (
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">{this.state.book.title}</h5>
-            <h5 className="card-genre">Genre: {this.state.book.genre}</h5>
-            <p className="description">Description: {this.state.book.description}</p>
-            <h5 className="card-publishingInfo">Publishing Information: {this.state.book.publishingInfo.publisher}, {this.state.book.publishingInfo.publicationDate}</h5>
+            <p className="card-title"><strong>{this.state.book.title}</strong></p>
+            <p className="card-genre"><strong>Genre:</strong> {this.state.book.genre}</p>
+            <p className="description"><strong>Description:</strong> {this.state.book.description}</p>
+            <p className="card-publishingInfo"><strong>Publishing Information:</strong>  {this.state.book.publishingInfo.publisher}, {this.state.book.publishingInfo.publicationDate}</p>
             <p className="card-author"><strong>Author:</strong> {this.state.book.author}, <a href={`/author/${this.state.book.authorId}`} style={{color: "#00f"}}>more books...</a></p>
-            <p className="card-shortBio">{this.state.book.shortBio}</p>
+            <p className="card-shortBio"><strong>About the Author:</strong> {this.state.book.shortBio}</p>
             <div className="w-25 mr-auto ml-auto mt-4">
             <ButtonToolbar>
             <button
