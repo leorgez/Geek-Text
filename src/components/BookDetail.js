@@ -5,8 +5,11 @@ import {
 import { apiUrl } from '../api';
 
 import Zoom from 'react-medium-image-zoom';
+import { Book}  from './Book';
 import 'react-medium-image-zoom/dist/styles.css';
 import { BookReviews } from "./BookReviews";
+import {Button, ButtonToolbar} from 'react-bootstrap';
+import {PopUpMenu} from './PopUpMenu';
 
 class BookDetail extends Component {
   state = {
@@ -14,7 +17,8 @@ class BookDetail extends Component {
     review: "", // string comment
     author: "", // User commenting string
     rating: null, // We start at nothing
-    calculatedRatings: 0 // We start @ 0, since at first it's empty
+    calculatedRatings: 0, // We start @ 0, since at first it's empty
+    showMenu: false
   };
 
   componentDidMount() {
@@ -30,6 +34,7 @@ class BookDetail extends Component {
       });
     });
   }
+
 
   loadBook = async bookId => {
     const response = await fetch(`${apiUrl}/books/${bookId}`);
@@ -90,7 +95,19 @@ class BookDetail extends Component {
     });
   }
 
+  addToWishList = () => {
+    let newBook = new Book(this.props.bookId, this.state.book.title, this.state.book.cover);
+    window.$tempBook = newBook;
+  }
+
   render() {
+
+    let closeMenu =() => {this.setState({showMenu: false});
+    window.$tempBook = null;
+  }
+
+    let openMenu =() => this.setState({showMenu: true});
+
     if (this.state.book === null) {
       return (
         <h1>Loading book...</h1>
@@ -105,6 +122,25 @@ class BookDetail extends Component {
             <h5 className="card-publishingInfo">Publishing Information: {this.state.book.publishingInfo.publisher}, {this.state.book.publishingInfo.publicationDate}</h5>
             <p className="card-author "><strong>Author:</strong> <a className="author-link" target="_blank" href={this.state.book.moreBooks}>{this.state.book.author}</a></p>
             <p className="card-shortBio">{this.state.book.shortBio}</p>
+            <div className="w-25 mr-auto ml-auto mt-4">
+            <ButtonToolbar>  
+            <button
+            type="submit"
+            className="btn btn-info w-100"
+            onClick={() => {
+             this.setState({showMenu: true})
+             this.addToWishList()
+            }}
+            >
+            Add to Wish List
+            </button>
+            <PopUpMenu
+            show={this.state.showMenu}
+            onHide={closeMenu}
+            onSubmit={closeMenu}
+            />
+            </ButtonToolbar>
+            </div>
             <Zoom>
               <img
                 src={this.state.book.cover}

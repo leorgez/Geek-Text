@@ -10,10 +10,14 @@ import {
 } from "react-router-dom";
 import MiniCartInfo from './components/MiniCartInfo';
 import CartView from './components/CartView';
+import ViewWishLists from './components/ViewWishLists';
 
+window.$wishList = [];
+window.$tempBook = null;
 
 function App() {
 	const [cartItems, setCartItems] = useState([]);
+
 	useEffect(() => {
 		let items = JSON.parse(localStorage.getItem('items'));
 		if (items) {
@@ -24,6 +28,8 @@ function App() {
 		setCartItems([...cartItems, book]);
 		localStorage.setItem('items', JSON.stringify([...cartItems, book]));
 	}
+
+
 	return (
 		<div className="App">
 			<Router>
@@ -35,12 +41,18 @@ function App() {
 						/>
 					</Route>
 					<Route path="/cart">
+						<MiniCartInfo cartLength={cartItems.length} />
 						<CartView />
+					</Route>
+					<Route path="/wishlist">
+						<MiniCartInfo cartLength={cartItems.length}/>
+						<ViewWishLists />
 					</Route>
 					<Route path="/">
 						<MiniCartInfo cartLength={cartItems.length} />
 						<BooksList
-							addToCart={addToCart} />
+							addToCart={addToCart}
+							 />
 					</Route>
 				</Switch>
 			</Router>
